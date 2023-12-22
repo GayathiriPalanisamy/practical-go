@@ -13,20 +13,21 @@ func main(){
 	if err != nil{
 		log.Fatal(err)
 	}
-	fmt.Printf("%#v, %#v ", name, public_repors)
+	fmt.Printf("%#v, %#v", name, public_repors)
 }
 
 //githubInfo returns name and number of public repos for login
 func githubInfo(login string) (string, int, error){
 	url := "https://api.github.com/users/" + url.PathEscape(login)
+	fmt.Println(url)
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", 0, err
 	}
 	var r struct{ //anonymous struct
-		Name         string
+		Name         string `json:"created_at"`
 		Public_Repos int
-		Created string `json:"created_at"`
+		Created string `json:"created"`
 	}
 	dec := json.NewDecoder(resp.Body)
 	if err := dec.Decode(&r); err != nil {

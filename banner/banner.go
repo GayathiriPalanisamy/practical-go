@@ -33,7 +33,8 @@ func main(){
 }
 
 func isPalindrome(s string) bool{
-	rs := []rune(s) //to get slice of runes out of s
+	rs := (s) //to get slice of runes out of s
+	fmt.Printf("count: %#v, value: %v \t", rs, s)
 	for i := 0 ;i < len(rs)/2; i ++{
 		if rs[i] != rs[len(rs)-i-1]{
 			return false
